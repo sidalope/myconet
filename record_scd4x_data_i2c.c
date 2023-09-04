@@ -75,11 +75,11 @@ int main(void) {
     time(&rawtime);
     info = localtime(&rawtime);
     char buffer[80];
-    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", info);
+    strftime(buffer, 80, "%Y/%m/%d %H-%M-%S", info);
     printf("Start at: %s \n", buffer);
 
     char csv_data_file[80];
-    strftime(csv_data_file, 80, "sensor_data_%Y-%m-%d %H:%M:%S.csv", info);
+    strftime(csv_data_file, 80, "sensor_data_%Y/%m/%d %H-%M-%S.csv", info);
 
     // Initialise csv file
     FILE *fdata = fopen(csv_data_file, "a");
@@ -111,7 +111,7 @@ int main(void) {
         time(&rawtime);
         info = localtime(&rawtime);
         char date[80];
-        strftime(date, 80, "%Y-%m-%d %H:%M:%S", info);
+        strftime(date, 80, "%Y/%m/%d %H:%M:%S", info);
 
         uint16_t co2;
         float temperature;
@@ -131,7 +131,6 @@ int main(void) {
             printf("%s, %u, %.2f, %.2f\n", date, co2, temperature, humidity);
             fprintf(fdata, "%s, %u, %.2f, %.2f\n", date, co2, temperature, humidity);
         }
-        fclose(ftext);
         fclose(fdata);
     }
 
