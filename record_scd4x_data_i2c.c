@@ -75,11 +75,11 @@ int main(void) {
     time(&rawtime);
     info = localtime(&rawtime);
     char buffer[80];
-    strftime(buffer, 80, "%Y/%m/%d %H-%M-%S", info);
+    strftime(buffer, 80, "%Y_%m_%d-%H_%M_%S", info);
     printf("Start at: %s \n", buffer);
 
     char csv_data_file[80];
-    strftime(csv_data_file, 80, "sensor_data_%Y/%m/%d %H-%M-%S.csv", info);
+    strftime(csv_data_file, 80, "sensor_data_%Y_%m_%d-%H_%M_%S.csv", info);
 
     // Initialise csv file
     FILE *fdata = fopen(csv_data_file, "a");
