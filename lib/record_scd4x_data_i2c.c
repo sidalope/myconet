@@ -31,6 +31,7 @@
 
 #include <stdio.h>  // printf
 #include <time.h>	// time, localtime
+#include <unistd.h>
 
 #include "scd4x_i2c.h"
 #include "sensirion_common.h"
@@ -82,6 +83,7 @@ int main(void) {
     strftime(csv_data_file, 80, "sensor_data_%Y_%m_%d-%H_%M_%S.csv", info);
 
     // Initialise csv file
+    chdir("../data/");
     FILE *fdata = fopen(csv_data_file, "a");
     if (fdata == NULL)
     {
