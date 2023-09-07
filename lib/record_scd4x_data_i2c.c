@@ -83,7 +83,7 @@ int main(void) {
     strftime(csv_data_file, 80, "sensor_data_%Y_%m_%d-%H_%M_%S.csv", info);
 
     // Initialise csv file
-    chdir("../data/");
+    chdir("../data/raw/");
     FILE *fdata = fopen(csv_data_file, "a");
     if (fdata == NULL)
     {
