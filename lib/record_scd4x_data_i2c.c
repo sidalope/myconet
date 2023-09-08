@@ -113,7 +113,7 @@ int main(void) {
         time(&rawtime);
         info = localtime(&rawtime);
         char date[80];
-        strftime(date, 80, "%Y/%m/%d %H:%M:%S", info);
+        strftime(date, 80, "%Y-%m-%d %H:%M:%S", info);
 
         uint16_t co2;
         float temperature;
@@ -121,15 +121,11 @@ int main(void) {
         error = scd4x_read_measurement(&co2, &temperature, &humidity);
         if (error) {
             printf("Error executing scd4x_read_measurement(): %i\n", error);
-            fprintf(fdata, "Error executing scd4x_read_measurement(): %i\n", error);
+            //fprintf(fdata, "Error executing scd4x_read_measurement(): %i\n", error);
         } else if (co2 == 0) {
             printf("Invalid sample detected, skipping.\n");
-            fprintf(fdata, "Invalid sample detected, skipping.\n");
+            //fprintf(fdata, "Invalid sample detected, skipping.\n");
         } else {
-            //printf("%s\n", date);
-            //printf("CO2: %u ppm\n", co2);
-            //printf("Temperature: %.2f °C\n", temperature);
-            //printf("Humidity: %.2f RH\n\n", humidity);
             printf("%s, %u, %.2f, %.2f\n", date, co2, temperature, humidity);
             fprintf(fdata, "%s, %u, %.2f, %.2f\n", date, co2, temperature, humidity);
         }
